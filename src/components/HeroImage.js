@@ -5,6 +5,7 @@ const HeroImg = styled.img`
   width: auto;
   height: 90vh;
   margin-top: 10vh;
+  z-index: 6;
 `;
 
-export {HeroImg};
+export default HeroImg;
