@@ -1,3 +1,6 @@
-.hidden {
-    visibility: hidden;
+#fp-nav ul li:hover a.active span,
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li:hover a.active span,
+.fp-slidesNav ul li a.active span {
+    background-color: #dadce1;
 }

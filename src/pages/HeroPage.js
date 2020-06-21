@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react";
+import React from "react";
 import styled, {ThemeProvider} from "styled-components";
 import greyTriangle from "../misc/images/tr_2.png";
 import heroImg from "../misc/images/hero2.png"
@@ -13,7 +13,6 @@ const HeroPageWrapper = styled(PageWrapper)`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  //z-index: -2;
 `;
 
 const TextWrapper = styled.div`
@@ -51,7 +50,7 @@ const HeroPage = (props) => {
                 <TextWrapper id={props.textWrapperId}>
                     <TextRectangle primary>Welcome,</TextRectangle>
                     <StyledText>my name is Michał</StyledText>
-                    <HeroButton primary as="a" href={props.link} id={props.heroBtnId}>
+                    <HeroButton primary onClick={() => props.api.moveSectionDown()} as="a" id={props.heroBtnId}>
                         You should know me better
                     </HeroButton>
                 </TextWrapper>

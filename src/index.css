@@ -6,8 +6,6 @@ body, html {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*scroll-behavior: smooth;*/
-  overflow-x: hidden;
 }
 
 #root {
@@ -23,9 +21,4 @@ code {
 
 a {
   text-decoration: none;
-}
-
-section:not(#hero) {
-  opacity: 0;
-  transform: scale(0.8);
 }

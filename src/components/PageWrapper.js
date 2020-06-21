@@ -5,7 +5,7 @@ const PageWrapper = styled.section`
     width: 100%;
     height: 100vh;
     background-color: ${props => props.theme.colors.mainBackground};
-    position: fixed;
+    position: relative;
     font-family: ${props => props.theme.fontFamily};
 `;
 

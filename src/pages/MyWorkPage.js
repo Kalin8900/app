@@ -12,7 +12,6 @@ import PWLogo from "../misc/images/PW.png";
 const MyWorkPageWrapper = styled(PageWrapper)`
     display: flex;
     flex-flow: column;
-    z-index: -2;
 `;
 
 const TextWrapper = styled.div`

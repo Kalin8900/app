@@ -5,65 +5,89 @@ import {HireMePage} from "./pages/HireMePage";
 import {MyWorkPage} from "./pages/MyWorkPage";
 import {gsap} from 'gsap';
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import ReactFullpage from "@fullpage/react-fullpage";
 
+
+const animation = (pageIndex, elementsArr) => {
+    if(pageIndex === 0)
+    {
+        if(elementsArr.length === 3)
+        {
+            gsap.set(elementsArr, {autoAlpha: 0});
+            const tl = gsap.timeline({defaults: {ease: 'power2'}});
+            tl.to(elementsArr[0],{autoAlpha: 1, duration: 1}, 0.5);
+            tl.fromTo(elementsArr[1],{x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1}, '-=0.5');
+            tl.fromTo(elementsArr[2],{y: '-=50'}, {y: 0, autoAlpha: 1, duration: 1});
+        }
+        else
+            console.log("To animate first page 3 elements are required. heroImg, heroText and heroBtn, exactly in that order");
+    }
+    else if(pageIndex === 1)
+    {
+
+    }
+}
+
+const Fullpage = React.forwardRef((props, ref) => (
+    <ReactFullpage
+        //fullpage options
+        licenseKey = {'Q85^XEW#h3'}
+        scrollingSpeed = {1000}
+        navigation = {true}
+        afterLoad = {(origin) => {
+            const [cell] = origin.item.children;
+            const [page] = cell.children;
+            animation(origin.index, [page.children[0], page.children[2], page.children[2].children[2]]);
+        }}
+
+        render={({ state, fullpageApi }) => {
+            return (
+                <ReactFullpage.Wrapper ref={ref}>
+                    <div className="section">
+                        <HeroPage api={fullpageApi} id={"hero"} imgId={"heroImg"} textWrapperId={"heroText"} heroBtnId={"heroBtn"} link={"#aboutMe"}/>
+                    </div>
+                    <div className="section">
+                        <AboutMePage api={fullpageApi} id={"aboutMe"}/>
+                    </div>
+                    <div className="section">
+                        <MyWorkPage className={"section"} id={"myWork"}/>
+                    </div>
+                </ReactFullpage.Wrapper>
+            );
+        }}
+    />
+))
+
+const FullPageWithRef = React.forwardRef((props, ref) => (
+    <Fullpage ref={ref} />
+));
 
 function App() {
     const ref = useRef(null);
     useEffect(() => {
         const deref = ref.current.children;
-        const heroPage = deref[0];
-        const aboutMePage = deref[1];
-        const myWorkPage = deref[2];
+        const fullPageWrapper = deref[0];
+        const fullPageSections = fullPageWrapper.children;
+        const [cell] = fullPageSections[0].children;
+        const [heroPage] = cell.children;
+
         const heroImg = heroPage.children[0];
         const heroText = heroPage.children[2];
         const heroBtn = heroText.children[2];
 
-        gsap.set([heroImg, heroText, heroBtn], {autoAlpha: 0});
-        gsap.registerPlugin(ScrollTrigger);
-        const tl = gsap.timeline({defaults: {ease: 'power2'}});
-
-        tl.fromTo(heroImg,{y: '+=500'}, {y: 0, duration: 1} );
-        tl.to(heroImg,{autoAlpha: 1, duration: 1}, '-=0.5');
-        tl.fromTo(heroText,{x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1}, '-=0.5');
-        tl.fromTo(heroBtn,{y: '-=50'}, {y: 0, autoAlpha: 1, duration: 1});
-        const tl2 = gsap.timeline({defaults: {ease: 'ease-in-out', duration: 2}})
-        let pages = gsap.utils.toArray("section");
-
-        let currentPage = pages[0];
-
-        gsap.set("body", {height: ((pages.length) * 100) + "%"});
-
-        pages.forEach((page, i) => {
-
-            ScrollTrigger.create({
-                start: () => (i - 0.5) * window.outerHeight,
-                end: () => (i + 0.5) * window.outerHeight,
-                onToggle: self => self.isActive && setPage(page),
-                markers: true
-            })
-        })
-        const setPage = (newPage) => {
-
-            if(newPage !== currentPage)
-            {
-                gsap.to(currentPage, {scale: 0.8, autoAlpha: 0});
-                gsap.to(newPage, {scale: 1, autoAlpha: 1});
-                currentPage = newPage;
-            }
-        }
-        heroBtn.addEventListener('click', setPage(pages[1]));
+        gsap.fromTo(heroImg, {y: '+=500'}, {y: 0, duration: 1});
+        animation(0, [heroImg, heroText, heroBtn]);
     })
 
-
     return (
-        <div ref={ref} className={"panel"}>
-            <HeroPage id={"hero"} imgId={"heroImg"} textWrapperId={"heroText"} heroBtnId={"heroBtn"} link={"#aboutMe"}/>
-            <AboutMePage id={"aboutMe"}/>
-            <MyWorkPage id={"myWork"}/>
+        <div ref={ref}>
+            <Fullpage/>
         </div>
+
     );
-}
+};
 
-export default App;
+export {App, Fullpage};
 
+//Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 //<div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

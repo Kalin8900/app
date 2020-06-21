@@ -47,7 +47,7 @@ const ButtonWrapper = styled.div`
 
 const HireButton = styled(Button)`
   margin: 1vh 5vw 0 0;
-  width: 45%;
+  width: 50%;
   height: 10vh;
   align-self: flex-end;
   font-weight: bold;
@@ -86,7 +86,7 @@ const AboutMePage = (props) => {
             </SkillsWrapper>
             <ButtonWrapper>
                 <TextRectangle primary>Are you interested?</TextRectangle>
-                <HireButton primary>You can hire me here!</HireButton>
+                <HireButton primary onClick={() => props.api.moveSectionDown()}>Take a look what I've done so far!</HireButton>
             </ButtonWrapper>
         </AboutMePageWrapper>
         </ThemeProvider>
