@@ -8,23 +8,25 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import ReactFullpage from "@fullpage/react-fullpage";
 
 
-const animation = (pageIndex, elementsArr) => {
+const animation = (pageIndex, pageChildrens) => {
+    const tl = gsap.timeline({defaults: {ease: 'power2'}});
+
     if(pageIndex === 0)
     {
-        if(elementsArr.length === 3)
-        {
-            gsap.set(elementsArr, {autoAlpha: 0});
-            const tl = gsap.timeline({defaults: {ease: 'power2'}});
-            tl.to(elementsArr[0],{autoAlpha: 1, duration: 1}, 0.5);
-            tl.fromTo(elementsArr[1],{x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1}, '-=0.5');
-            tl.fromTo(elementsArr[2],{y: '-=50'}, {y: 0, autoAlpha: 1, duration: 1});
-        }
-        else
-            console.log("To animate first page 3 elements are required. heroImg, heroText and heroBtn, exactly in that order");
+            gsap.set([pageChildrens[0], pageChildrens[2], pageChildrens[2].children[2], pageChildrens[3],
+                pageChildrens[4]], {autoAlpha: 0});
+            tl.to(pageChildrens[0],{autoAlpha: 1, duration: 1}, 0.5);
+            tl.fromTo(pageChildrens[2],{x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1}, '-=0.5');
+            tl.fromTo(pageChildrens[2].children[2],{y: '-=50'}, {y: 0, autoAlpha: 1, duration: .7});
+            tl.fromTo(pageChildrens[3], {y: '+=50'}, {y: 0, autoAlpha: 1, duration: .5})
     }
     else if(pageIndex === 1)
     {
-
+        gsap.set([pageChildrens[1], pageChildrens[2], pageChildrens[3], pageChildrens[3].children[1]], {autoAlpha: 0});
+        tl.fromTo(pageChildrens[1], {x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1});
+        tl.fromTo(pageChildrens[2], {x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1}, "-=0.2");
+        tl.fromTo(pageChildrens[3], {x: '-=200'}, {x: 0, autoAlpha: 1, duration: 1}, "+=0.2");
+        tl.fromTo(pageChildrens[3].children[1], {y: '-=35'}, {y: 0, autoAlpha: 1, duration: 1});
     }
 }
 
@@ -34,10 +36,13 @@ const Fullpage = React.forwardRef((props, ref) => (
         licenseKey = {'Q85^XEW#h3'}
         scrollingSpeed = {1000}
         navigation = {true}
-        afterLoad = {(origin) => {
-            const [cell] = origin.item.children;
+        navigationTooltips ={["hero", "about me", "my work"]}
+        responsiveWidth = {768}
+        onLeave = {(origin, destination) => {
+            const [cell] = destination.item.children;
             const [page] = cell.children;
-            animation(origin.index, [page.children[0], page.children[2], page.children[2].children[2]]);
+            console.log(page);
+            animation(destination.index, page.children);
         }}
 
         render={({ state, fullpageApi }) => {
@@ -58,10 +63,6 @@ const Fullpage = React.forwardRef((props, ref) => (
     />
 ))
 
-const FullPageWithRef = React.forwardRef((props, ref) => (
-    <Fullpage ref={ref} />
-));
-
 function App() {
     const ref = useRef(null);
     useEffect(() => {
@@ -74,9 +75,11 @@ function App() {
         const heroImg = heroPage.children[0];
         const heroText = heroPage.children[2];
         const heroBtn = heroText.children[2];
+        const heroArrowWrapper = heroPage.children[3];
 
         gsap.fromTo(heroImg, {y: '+=500'}, {y: 0, duration: 1});
-        animation(0, [heroImg, heroText, heroBtn]);
+        animation(0, heroPage.children);
+        gsap.to(heroArrowWrapper.children[1], {y: "+=15", repeat: -1, duration: 0.7, yoyo: true, width: 2.65 + "vw"})
     })
 
     return (

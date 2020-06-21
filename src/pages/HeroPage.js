@@ -8,6 +8,8 @@ import HeroImg from "../components/HeroImage";
 import Button from "../components/Button";
 import TextRectangle from "../components/TextRectangle";
 import rootTheme from "../themes/root";
+import Arrow from "../components/Arrow";
+import arrowSrc from "../misc/images/down-arrow.png";
 
 const HeroPageWrapper = styled(PageWrapper)`
   display: flex;
@@ -41,6 +43,24 @@ color: ${props => props.theme.colors.textColor};
 z-index: 100;
 `;
 
+const ArrowWrapper = styled.div`
+    position: absolute;
+    bottom: 2.5vh;
+    z-index: 2;
+    width: 15vw;
+    height: 8vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+`;
+
+const AbsoluteArrow = styled.img`
+  height: 80%;
+  width: auto;
+`;
+
 const HeroPage = (props) => {
     return (
         <ThemeProvider theme={rootTheme}>
@@ -54,6 +74,10 @@ const HeroPage = (props) => {
                         You should know me better
                     </HeroButton>
                 </TextWrapper>
+                <ArrowWrapper>
+                    <span>Scroll down or use arrows!</span>
+                    <AbsoluteArrow src={arrowSrc} className={"heroArrow"} />
+                </ArrowWrapper>
             </HeroPageWrapper>
         </ThemeProvider>
     )

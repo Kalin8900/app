@@ -43,6 +43,7 @@ const ButtonWrapper = styled.div`
   font-size: ${props => props.theme.fontSize.xlarge}vw;
   margin-left: 2vw;
   width: 40%;
+  z-index: 2;
 `;
 
 const HireButton = styled(Button)`
