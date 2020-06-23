@@ -32,7 +32,10 @@ const animation = (pageIndex, pageChildrens) => {
     else if(pageIndex === 2)
     {
         const pageWrapper = pageChildrens[0];
-        console.log(pageChildrens[0]);
+        const [workImg, workHeader, workProjectsWrapper] = pageWrapper.children;
+        gsap.set([workHeader, workProjectsWrapper], {autoAlpha: 0});
+        tl.fromTo(workHeader, {y: "-=300"}, {y: 0, autoAlpha: 1, duration: 1});
+        tl.fromTo(workProjectsWrapper, {y: "+=1000", zIndex: 5}, {y: 0, autoAlpha: 1, duration: 1})
     }
 }
 

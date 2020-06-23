@@ -8,39 +8,38 @@ import HeroImg from "../components/HeroImage";
 import Button from "../components/Button";
 import TextRectangle from "../components/TextRectangle";
 import rootTheme from "../themes/root";
-import Arrow from "../components/Arrow";
 import arrowSrc from "../misc/images/down-arrow.png";
 
 const HeroPageWrapper = styled(PageWrapper)`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 `;
 
 const TextWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  font-size: ${props => props.theme.fontSize.xxlarge}vw;
-  z-index: 10;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    font-size: ${props => props.theme.fontSize.xxlarge}vw;
+    z-index: 10;
 `;
 
 const StyledText = styled.h1`
-  z-index: 1;
-  font-size: ${props => props.theme.fontSize.xxlarge}vw;
-  font-weight: bold;
-  margin: 0;
+    z-index: 1;
+    font-size: ${props => props.theme.fontSize.xxlarge}vw;
+    font-weight: bold;
+    margin: 0;
 `;
 
 const HeroButton = styled(Button)`
-margin-top: 1vh;
-width: 45%;
-height: 10vh;
-align-self: flex-end;
-font-weight: bold;
-font-size: ${props => props.theme.fontSize.buttonFontSize}vw;
-color: ${props => props.theme.colors.textColor};
-z-index: 100;
+    margin-top: 1vh;
+    width: 45%;
+    height: 10vh;
+    align-self: flex-end;
+    font-weight: bold;
+    font-size: ${props => props.theme.fontSize.buttonFontSize}vw;
+    color: ${props => props.theme.colors.textColor};
+    z-index: 100;
 `;
 
 const ArrowWrapper = styled.div`
@@ -57,8 +56,8 @@ const ArrowWrapper = styled.div`
 `;
 
 const AbsoluteArrow = styled.img`
-  height: 80%;
-  width: auto;
+    height: 80%;
+    width: auto;
 `;
 
 const HeroPage = (props) => {

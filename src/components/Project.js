@@ -4,41 +4,36 @@ import gitLogo from "../misc/images/github.png";
 import scatterPng from "../misc/images/Scatter_Main.png";
 import Button from "./Button";
 import {Scatter} from "./Scatter";
-import TextRectangle from "./TextRectangle";
 
 const ProjectWrapper = styled.div`
     width: 25%;
     height: 45%;
-    // background-color: ${props => props.theme.colors.accentBackground};
     z-index: 1;
     display: flex;
     flex-flow: row;
     justify-content: center;
     align-items: center;
-    //box-shadow: 2px 2px 2px 1px #181b21;
 `;
 
 const TextWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
-  align-items: center;
-  position: relative;
-   background-color: ${props => props.theme.colors.accentBackground};
-       box-shadow: 2px 2px 2px 1px #181b21;
-
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    background-color: ${props => props.theme.colors.accentBackground};
+    box-shadow: 2px 2px 2px 1px #181b21;
 `;
 
 const StyledScatter = styled(Scatter)`
-  position: absolute;
-  left: 0;
-  z-index: 0;
+    position: absolute;
+    left: 0;
+    z-index: 0;
 `;
 
 const LinksWrapper = styled.div`
-    //margin-top: 2vh;
     height: 25%;
     width: 100%;
     display: flex;
@@ -76,9 +71,7 @@ const Project = (props) => {
         <ProjectWrapper>
             <TextWrapper>
                 <Header>
-                    {/*<TextRectangle primary>*/}
-                        {props.header}
-                    {/*</TextRectangle>*/}
+                    {props.header}
                 </Header>
                 <TextSpan>
                     {props.text}
