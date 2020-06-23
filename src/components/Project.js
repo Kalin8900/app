@@ -4,83 +4,82 @@ import gitLogo from "../misc/images/github.png";
 import scatterPng from "../misc/images/Scatter_Main.png";
 import Button from "./Button";
 import {Scatter} from "./Scatter";
+import TextRectangle from "./TextRectangle";
 
 const ProjectWrapper = styled.div`
-    width: 75vw;
-    height: 65vh;
-    background-color: ${props => props.theme.colors.accentBackground};
+    width: 25%;
+    height: 45%;
+    // background-color: ${props => props.theme.colors.accentBackground};
     z-index: 1;
     display: flex;
     flex-flow: row;
-    justify-content: space-between;
-    box-shadow: 2px 2px 2px 1px #181b21;
-`;
-
-const Logo = styled.img`
-    margin: .5vw;
-    height: 100%;
-    opacity: .9;
-`;
-
-const UsedTechnologies = styled.div`
-    height: 25%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: ${props => props.theme.fontSize.large}vw;
-    font-weight: bold;
-    margin-left: 2.5vw;
-`;
-
-const LinksWrapper = styled.div`
-    height: 25%;
-    display: flex;
-    font-size: ${props => props.theme.fontSize.medium}vw;
-    font-weight: bold;
-    justify-content: space-around;
-    align-items: center;
-    text-decoration: none;
-    color: ${props => props.theme.colors.textColor};
-`;
-
-const LinkLogo = styled.img`
-    height: 55%;
-    margin-right: 1vw;
-`;
-
-const LogoWrapper = styled.div`
-    margin-top: .5vh;
-    display: flex;
-    height: 25%;
     justify-content: center;
     align-items: center;
+    //box-shadow: 2px 2px 2px 1px #181b21;
 `;
 
 const TextWrapper = styled.div`
-    margin-top: .5vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+   background-color: ${props => props.theme.colors.accentBackground};
+       box-shadow: 2px 2px 2px 1px #181b21;
+
+`;
+
+const StyledScatter = styled(Scatter)`
+  position: absolute;
+  left: 0;
+  z-index: 0;
+`;
+
+const LinksWrapper = styled.div`
+    //margin-top: 2vh;
+    height: 25%;
+    width: 100%;
     display: flex;
-    flex-flow: column;
+    font-size: ${props => props.theme.fontSize.mediumSmall}vw;
+    font-weight: bold;
+    justify-content: space-evenly;
     align-items: center;
-    justify-content: space-between;
-    font-size: ${props => props.theme.fontSize.small}vw;
-    width: 65%;
+    text-decoration: none;
+    color: ${props => props.theme.colors.textColor};
+    z-index: 1;
+`;
+
+const LinkLogo = styled.img`
+    height: 68%;
+    border-radius: 55%;
+    background-color: ${props => props.theme.colors.textColor};
+`;
+
+const TextSpan = styled.div`
+    margin: 0 15%;
+    font-size: ${props => props.theme.fontSize.xsmall}vw;
+    text-align: center;
+    z-index: 1;
+`;
+
+const Header = styled.div`
+    font-size: ${props => props.theme.fontSize.medium}vw;
+    font-weight: bold;
     text-align: center;
 `;
 
-const TextSpan = styled.span`
-    margin: 0 15%;
-`;
 
 const Project = (props) => {
-
     return (
         <ProjectWrapper>
-            <LogoWrapper>
-                <Logo src={props.logo}/>
-            </LogoWrapper>
-            <Scatter ScatterSource={scatterPng} height={50} width={15}/>
             <TextWrapper>
-                <UsedTechnologies> {props.ProjectType} project</UsedTechnologies>
+                <Header>
+                    {/*<TextRectangle primary>*/}
+                        {props.header}
+                    {/*</TextRectangle>*/}
+                </Header>
                 <TextSpan>
                     {props.text}
                 </TextSpan>
@@ -88,6 +87,7 @@ const Project = (props) => {
                     <LinkLogo src={gitLogo} alt={"Git"}/>
                     <Button primary>Check the source!</Button>
                 </LinksWrapper>
+                <StyledScatter ScatterSource={scatterPng} height={60} width={55}/>
             </TextWrapper>
         </ProjectWrapper>
     )

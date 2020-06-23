@@ -57,6 +57,8 @@ const HireButton = styled(Button)`
 
 
 const AboutMePage = (props) => {
+    let a = 1;
+
     return(
         <ThemeProvider theme={rootTheme}>
         <AboutMePageWrapper id={props.id}>

@@ -2,5 +2,11 @@
 #fp-nav ul li a.active span,
 .fp-slidesNav ul li:hover a.active span,
 .fp-slidesNav ul li a.active span {
+    background-color: #cb4b4b;
+}
+#fp-nav ul li:hover a span, .fp-slidesNav ul li:hover a span {
     background-color: #dadce1;
+}
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+    background-color: #dadce1 !important;
 }

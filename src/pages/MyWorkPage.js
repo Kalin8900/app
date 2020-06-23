@@ -1,17 +1,27 @@
-import React from "react";
+import React, {useRef, useEffect, useState} from "react";
 import styled, {ThemeProvider} from "styled-components";
 import PageWrapper from "../components/PageWrapper";
 import blueTriangle from "../misc/images/tr_3.png";
 import StyledTriangle from "../components/Triangles";
 import rootTheme from "../themes/root";
 import Project from "../components/Project";
-import Arrow from "../components/Arrow";
-import arrowSrc from "../misc/images/nextWhite.svg";
-import PWLogo from "../misc/images/PW.png";
+import {ReactComponent as Arrow} from "../misc/images/arrow.svg";
+import laptopC from "../misc/images/lap 1.svg";
+import laptopReact from "../misc/images/laptopReact.svg";
+import {ReactComponent as Laptop} from "../misc/images/lap 1.svg";
+import {gsap} from 'gsap';
+import userEvent from "@testing-library/user-event";
 
 const MyWorkPageWrapper = styled(PageWrapper)`
     display: flex;
     flex-flow: column;
+`;
+
+const CentringDiv = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 70vh;
 `;
 
 const TextWrapper = styled.div`
@@ -24,16 +34,25 @@ const TextWrapper = styled.div`
 `;
 
 const ProjectsWrapper = styled.div`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     position: relative;
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 `;
 
 const ArrowRight = styled(Arrow)`
     width: 10vw;
     height: 10vh;
     z-index: 1;
+    
+    &:hover {
+    cursor: pointer;
+    fill: red;
+    }
 `;
 
 const ArrowLeft = styled(ArrowRight)`
@@ -41,20 +60,62 @@ const ArrowLeft = styled(ArrowRight)`
 `;
 
 const FirstProject = styled(Project)`
-
 `;
 
+const SecondProject = styled(Project)`
+`;
+
+const ThirdProject = styled(Project)`
+`;
+
+const StyledLaptop = styled(Laptop)`
+  z-index: 1;
+`
+
+const Wrapper = styled.div`
+position: relative;
+width: 50%;
+height: 100%;
+`
+
+
 const MyWorkPage = (props) => {
+    const ref = useRef(null)
+
+    const [renderCnt, setRenderCnt] = useState(0);
+
+    const [projectsArr, setProjectsArr] = useState([]);
+
+    const [currentProject, setCurrentProject] = useState(null);
+
+    useEffect(() => {
+        if(renderCnt === 0)
+        {
+            const ProjectsWrapper = ref.current.children;
+            const tempArr = [];
+            let i;
+            for(i = 0; i < ProjectsWrapper.length; ++i)
+                tempArr.push(ProjectsWrapper[i].children[0]);
+            setProjectsArr(tempArr);
+            setRenderCnt(1);
+        }
+    }, [renderCnt, ref])
+
     return (
         <ThemeProvider theme={rootTheme}>
             <MyWorkPageWrapper id={props.id}>
-                <StyledTriangle as="img" src={blueTriangle} alt="blue" />
-                <TextWrapper>Here you can find my projects</TextWrapper>
-                <ProjectsWrapper>
-                    <ArrowLeft as="img" src={arrowSrc} alt="arrow" />
-                    <FirstProject ProjectType={"Study C++"} text={FirstProjectText} technologies={props.ProjectType} href={"https://github.com/Kalin8900/Studies/tree/master/zad_7"} logo={PWLogo}/>
-                    <ArrowRight as="img" src={arrowSrc} alt="arrow" />
-                </ProjectsWrapper>
+                <CentringDiv>
+                    <StyledTriangle as="img" src={blueTriangle} alt="blue"/>
+                    <TextWrapper>Here you can find my projects</TextWrapper>
+                    <ProjectsWrapper ref={ref}>
+                            <SecondProject src={laptopC} header={"Animations in FLTK!"} text={FirstProjectText}
+                                           href={"https://github.com/Kalin8900/Studies/tree/master/zad_6"}/>
+                            <FirstProject  src={laptopC} header={"EAN-8 generator"} text={FirstProjectText}
+                                           href={"https://github.com/Kalin8900/Studies/tree/master/zad_7"}/>
+                            <ThirdProject src={laptopReact} header={"My first React site"} text={FirstProjectText}
+                                          href={"https://github.com/Kalin8900/Studies/tree/master/zad_6"}/>
+                    </ProjectsWrapper>
+                </CentringDiv>
             </MyWorkPageWrapper>
         </ThemeProvider>
     )

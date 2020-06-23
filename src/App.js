@@ -8,6 +8,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import ReactFullpage from "@fullpage/react-fullpage";
 
 
+
 const animation = (pageIndex, pageChildrens) => {
     const tl = gsap.timeline({defaults: {ease: 'power2'}});
 
@@ -28,6 +29,11 @@ const animation = (pageIndex, pageChildrens) => {
         tl.fromTo(pageChildrens[3], {x: '-=200'}, {x: 0, autoAlpha: 1, duration: 1}, "+=0.2");
         tl.fromTo(pageChildrens[3].children[1], {y: '-=35'}, {y: 0, autoAlpha: 1, duration: 1});
     }
+    else if(pageIndex === 2)
+    {
+        const pageWrapper = pageChildrens[0];
+        console.log(pageChildrens[0]);
+    }
 }
 
 const Fullpage = React.forwardRef((props, ref) => (
@@ -38,10 +44,10 @@ const Fullpage = React.forwardRef((props, ref) => (
         navigation = {true}
         navigationTooltips ={["hero", "about me", "my work"]}
         responsiveWidth = {768}
+        anchors = {["heroPage", "aboutPage", "projectsPage"]}
         onLeave = {(origin, destination) => {
             const [cell] = destination.item.children;
             const [page] = cell.children;
-            console.log(page);
             animation(destination.index, page.children);
         }}
 
@@ -55,7 +61,7 @@ const Fullpage = React.forwardRef((props, ref) => (
                         <AboutMePage api={fullpageApi} id={"aboutMe"}/>
                     </div>
                     <div className="section">
-                        <MyWorkPage className={"section"} id={"myWork"}/>
+                        <MyWorkPage id={"myWork"}/>
                     </div>
                 </ReactFullpage.Wrapper>
             );
@@ -94,3 +100,4 @@ export {App, Fullpage};
 
 //Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 //<div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+// /<div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

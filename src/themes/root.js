@@ -8,7 +8,9 @@ const rootTheme = {
         textColor: "#dadce1"
     },
     fontSize: {
+        xsmall: 0.75,
         small: 1,
+        mediumSmall: 1.5,
         medium: 2,
         large: 3,
         xlarge: 4,
