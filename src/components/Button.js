@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 
@@ -28,7 +27,7 @@ const Button = styled.div`
 }
 
 &:after {
-    background-color: ${props => props.background == "dark" ? props.theme.colors.accentBackground : props.theme.colors.blueAccent};
+    background-color: ${props => props.background === "dark" ? props.theme.colors.accentBackground : props.theme.colors.blueAccent};
     top: 1vh;
     right: 1vh;
     z-index: -2;

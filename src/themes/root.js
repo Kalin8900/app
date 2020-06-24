@@ -1,5 +1,3 @@
-import React from "react";
-
 const rootTheme = {
     colors: {
         mainBackground: "#242526",

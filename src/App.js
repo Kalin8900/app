@@ -1,25 +1,33 @@
 import React, {useRef, useEffect} from 'react';
+import styled from "styled-components";
 import {HeroPage} from "./pages/HeroPage"
 import {AboutMePage} from "./pages/AboutMePage";
-import {HireMePage} from "./pages/HireMePage";
 import {MyWorkPage} from "./pages/MyWorkPage";
 import {gsap} from 'gsap';
-import {ScrollTrigger} from "gsap/ScrollTrigger";
 import ReactFullpage from "@fullpage/react-fullpage";
 
-
+const Mobile = styled.div`
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    height: 100vh;
+    width: 100%;
+`;
 
 const animation = (pageIndex, pageChildrens) => {
     const tl = gsap.timeline({defaults: {ease: 'power2'}});
 
     if(pageIndex === 0)
     {
-            gsap.set([pageChildrens[0], pageChildrens[2], pageChildrens[2].children[2], pageChildrens[3],
-                pageChildrens[4]], {autoAlpha: 0});
-            tl.to(pageChildrens[0],{autoAlpha: 1, duration: 1}, 0.5);
-            tl.fromTo(pageChildrens[2],{x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1}, '-=0.5');
-            tl.fromTo(pageChildrens[2].children[2],{y: '-=50'}, {y: 0, autoAlpha: 1, duration: .7});
-            tl.fromTo(pageChildrens[3], {y: '+=50'}, {y: 0, autoAlpha: 1, duration: .5})
+        gsap.set([pageChildrens[0], pageChildrens[2], pageChildrens[2].children[2], pageChildrens[3],
+            pageChildrens[4]], {autoAlpha: 0});
+        tl.to(pageChildrens[0],{autoAlpha: 1, duration: 1}, 0.5);
+        tl.fromTo(pageChildrens[2],{x: '+=200'}, {x: 0, autoAlpha: 1, duration: 1}, '-=0.5');
+        tl.fromTo(pageChildrens[2].children[2],{y: '-=50'}, {y: 0, autoAlpha: 1, duration: .7});
+        tl.fromTo(pageChildrens[3], {y: '+=50'}, {y: 0, autoAlpha: 1, duration: .5})
     }
     else if(pageIndex === 1)
     {
@@ -75,21 +83,31 @@ const Fullpage = React.forwardRef((props, ref) => (
 function App() {
     const ref = useRef(null);
     useEffect(() => {
-        const deref = ref.current.children;
-        const fullPageWrapper = deref[0];
-        const fullPageSections = fullPageWrapper.children;
-        const [cell] = fullPageSections[0].children;
-        const [heroPage] = cell.children;
+        if(ref)
+        {
+            const deref = ref.current.children;
+            const fullPageWrapper = deref[0];
+            const fullPageSections = fullPageWrapper.children;
+            const [cell] = fullPageSections[0].children;
+            const [heroPage] = cell.children;
 
-        const heroImg = heroPage.children[0];
-        const heroText = heroPage.children[2];
-        const heroBtn = heroText.children[2];
-        const heroArrowWrapper = heroPage.children[3];
+            const heroImg = heroPage.children[0];
+            const heroText = heroPage.children[2];
+            const heroBtn = heroText.children[2];
+            const heroArrowWrapper = heroPage.children[3];
 
-        gsap.fromTo(heroImg, {y: '+=500'}, {y: 0, duration: 1});
-        animation(0, heroPage.children);
-        gsap.to(heroArrowWrapper.children[1], {y: "+=15", repeat: -1, duration: 0.7, yoyo: true, width: 2.65 + "vw"})
+            gsap.fromTo(heroImg, {y: '+=500'}, {y: 0, duration: 1});
+            animation(0, heroPage.children);
+            gsap.to(heroArrowWrapper.children[1], {y: "+=15", repeat: -1, duration: 0.7, yoyo: true, width: 2.65 + "vw"})
+        }
     })
+
+    if(window.outerWidth < 768)
+        return (
+            <Mobile>
+                Unfortunately mobile view is not supported at the moment :(
+            </Mobile>
+        )
 
     return (
         <div ref={ref}>
@@ -97,7 +115,7 @@ function App() {
         </div>
 
     );
-};
+}
 
 export {App, Fullpage};
 

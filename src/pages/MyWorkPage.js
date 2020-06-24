@@ -5,8 +5,6 @@ import blueTriangle from "../misc/images/tr_3.png";
 import StyledTriangle from "../components/Triangles";
 import rootTheme from "../themes/root";
 import Project from "../components/Project";
-import laptopC from "../misc/images/lap 1.svg";
-import laptopReact from "../misc/images/laptopReact.svg";
 
 const MyWorkPageWrapper = styled(PageWrapper)`
     display: flex;
@@ -46,9 +44,10 @@ const MyWorkPage = (props) => {
 
     const [renderCnt, setRenderCnt] = useState(0);
 
+    /**prepared for zooming projects**/
     const [projectsArr, setProjectsArr] = useState([]);
 
-    const [currentProject, setCurrentProject] = useState(null);
+    //const [currentProject, setCurrentProject] = useState(null);
 
     useEffect(() => {
         if (renderCnt === 0) {
@@ -75,6 +74,10 @@ const MyWorkPage = (props) => {
                                  href={"https://github.com/Kalin8900/Studies/tree/master/zad_9"}/>
                         <Project header={"Animations in FLTK!"} text={AnimProjectText}
                                  href={"https://github.com/Kalin8900/Studies/tree/master/zad_6"}/>
+                        <Project header={"Median filter on BMP"} text={MedianProjectText}
+                                 href={"https://github.com/Kalin8900/Studies/tree/master/zad_8"}/>
+                        <Project header={"Menus in Graph_lib"} text={MenuProjectText}
+                                 href={"https://github.com/Kalin8900/Studies/tree/master/zad_7"}/>
                     </ProjectsWrapper>
                 </CentringDiv>
             </MyWorkPageWrapper>
@@ -94,5 +97,13 @@ const ReactProjectText = "During the second semester of study, I had the pleasur
 const AnimProjectText = "After a moment of fun with the basic controls, Graph_lib and FLTK documentation, it was time to create the first animations using these libraries. " +
     "While writing this program, my tiny figure API was also used, which was modified over several tasks. " +
     "The task required a lot of thinking over mathematical transformations, but it gave me a lot of fun and taught me a lot.";
+
+const MedianProjectText = "The main purpose of this task was to write a program that reads the BMP file, puts a median filter on it, and writes to the second BMP file. " +
+    "n addition, I had to transfer the code from the received program written in C to C++. This code read and wrote BMP files. " +
+    "This task showed the difference in binary file operations between C and C++. Stream operations in C++ proved to be crucial!";
+
+const MenuProjectText = "Programs that have an extensive user interface have always fascinated me. " +
+    "Using the Graph_lib library, I wrote a rather interesting menu that when opened moves other elements without doing overflow. " +
+    "Thanks to this task I entered the world of creating such interfaces and you can see the results of my work by clicking the link below.";
 
 export {MyWorkPage};

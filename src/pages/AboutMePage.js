@@ -10,7 +10,6 @@ import rootTheme from "../themes/root";
 const AboutMePageWrapper = styled(PageWrapper)`
   display: flex;
   flex-flow: column;
-  //z-index: -1;
 `;
 
 const AboutMeWrapper = styled.div`
@@ -57,8 +56,6 @@ const HireButton = styled(Button)`
 
 
 const AboutMePage = (props) => {
-    let a = 1;
-
     return(
         <ThemeProvider theme={rootTheme}>
         <AboutMePageWrapper id={props.id}>

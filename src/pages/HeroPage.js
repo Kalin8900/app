@@ -58,6 +58,10 @@ const ArrowWrapper = styled.div`
 const AbsoluteArrow = styled.img`
     height: 80%;
     width: auto;
+
+    &:hover {
+    cursor: pointer;
+    }
 `;
 
 const HeroPage = (props) => {
@@ -75,7 +79,7 @@ const HeroPage = (props) => {
                 </TextWrapper>
                 <ArrowWrapper>
                     <span>Scroll down or use arrows!</span>
-                    <AbsoluteArrow src={arrowSrc} className={"heroArrow"} />
+                    <AbsoluteArrow onClick={() => props.api.moveSectionDown()} src={arrowSrc} className={"heroArrow"} />
                 </ArrowWrapper>
             </HeroPageWrapper>
         </ThemeProvider>
