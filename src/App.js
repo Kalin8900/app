@@ -83,7 +83,7 @@ const Fullpage = React.forwardRef((props, ref) => (
 function App() {
     const ref = useRef(null);
     useEffect(() => {
-        if(ref)
+        if(ref.current !== null)
         {
             const deref = ref.current.children;
             const fullPageWrapper = deref[0];
