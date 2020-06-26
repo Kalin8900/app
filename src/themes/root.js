@@ -13,6 +13,7 @@ const rootTheme = {
         large: 3,
         xlarge: 4,
         xxlarge: 5,
+        mega: 6,
         buttonFontSize: 1.25,
     },
     fontFamily: "Roboto, sans-serif",

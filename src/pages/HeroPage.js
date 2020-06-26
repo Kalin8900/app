@@ -67,7 +67,7 @@ const AbsoluteArrow = styled.img`
 const HeroPage = (props) => {
     return (
         <ThemeProvider theme={rootTheme}>
-            <HeroPageWrapper id={props.id} className="hero">
+            <HeroPageWrapper id={props.id}>
                 <HeroImg as="img" src={heroImg} alt="hero" id={props.imgId}/>
                 <StyledTriangle as="img" src={greyTriangle} alt="grey"/>
                 <TextWrapper id={props.textWrapperId}>
@@ -79,7 +79,7 @@ const HeroPage = (props) => {
                 </TextWrapper>
                 <ArrowWrapper>
                     <span>Scroll down or use arrows!</span>
-                    <AbsoluteArrow onClick={() => props.api.moveSectionDown()} src={arrowSrc} className={"heroArrow"} />
+                    <AbsoluteArrow onClick={() => props.api.moveSectionDown()} src={arrowSrc}/>
                 </ArrowWrapper>
             </HeroPageWrapper>
         </ThemeProvider>

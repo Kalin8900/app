@@ -5,7 +5,7 @@ const Button = styled.div`
     padding: 0 2vw;
     position: relative;
     text-align: center;
-    z-index: 100;
+    z-index: 5;
     display: flex;
     justify-content: center;
     align-items: center;

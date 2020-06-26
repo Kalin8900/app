@@ -5,7 +5,7 @@ import scatterPng from "../misc/images/Scatter_Main.png";
 import Button from "./Button";
 import {Scatter} from "./Scatter";
 
-const ProjectWrapper = styled.div`
+const ProjectWrapper = styled.article`
     width: 25%;
     height: 45%;
     z-index: 1;

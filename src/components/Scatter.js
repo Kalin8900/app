@@ -7,7 +7,7 @@ const ScatterWrapper = styled.div`
     flex-wrap: wrap;
     position: absolute;
     height: 50%;
-    width: 45%;
+    width: 50%;
     left: 0;
     bottom: 0;
     z-index: 0;
