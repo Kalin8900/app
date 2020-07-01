@@ -48,6 +48,16 @@ object-assign
  * @author: Jack Doyle, jack@greensock.com
 */
 
+/*!
+ * ScrollToPlugin 3.3.3
+ * https://greensock.com
+ *
+ * @license Copyright 2008-2020, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
+
 /**
   * Customized version of iScroll.js 0.1.3
   * It fixes bugs affecting its integration with fullpage.js
