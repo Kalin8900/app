@@ -48,6 +48,10 @@ const MenuPage = (props) => {
             <PageLink>
                 My projects
             </PageLink>
+            <PageLink>
+                Menu is under development!
+            </PageLink>
+
         </Wrapper>
     )
 };
