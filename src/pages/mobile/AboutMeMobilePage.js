@@ -19,7 +19,7 @@ const MobileRotatedTr = styled(RotatedTriangleImg)`
 `;
 
 const AboutMeWrapper = styled.div`
-  font-size: ${props => props.theme.fontSize.xlarge}vh;
+  font-size: ${props => props.theme.fontSize.large}vh;
   margin: 0;
   z-index: 2;
   width: 80%;
@@ -31,7 +31,7 @@ const TextAboutMe = styled.div`
 `;
 
 const SkillsWrapper = styled.div`
-  font-size: ${props => props.theme.fontSize.xlarge}vh;
+  font-size: ${props => props.theme.fontSize.large}vh;
   z-index: 2;
   width: 80%;
   //margin: 0 5vw 0 0;

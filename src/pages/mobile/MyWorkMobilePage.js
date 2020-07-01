@@ -32,6 +32,7 @@ const TextWrapper = styled.div`
     font-weight: bold;
     justify-self: center;
     align-self: center;
+    text-align: center;
     margin-bottom: 5vh;
 `;
 

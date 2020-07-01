@@ -16,8 +16,8 @@ const ProjectWrapper = styled.article`
 `;
 
 const MobileProjectWrapper = styled.article`
-    width: 75%;
-    height: 45%;
+    width: 80%;
+    height: 50%;
     z-index: 1;
     display: flex;
     position: absolute;

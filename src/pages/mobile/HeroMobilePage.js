@@ -26,7 +26,7 @@ const TextWrapper = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: center;
-    font-size: ${props => props.theme.fontSize.mega}vh;
+    font-size: ${props => props.theme.fontSize.xxlarge}vh;
     height: 90%;
     width: 92vw;
     z-index: 2;
@@ -35,7 +35,7 @@ const TextWrapper = styled.div`
 
 const StyledText = styled.h1`
     z-index: 1;
-    font-size: ${props => props.theme.fontSize.mega}vh;
+    font-size: ${props => props.theme.fontSize.xxlarge}vh;
     font-weight: bold;
     margin: 0;
 `;
