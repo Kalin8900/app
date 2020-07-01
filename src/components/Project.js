@@ -15,6 +15,18 @@ const ProjectWrapper = styled.article`
     align-items: center;
 `;
 
+const MobileProjectWrapper = styled.article`
+    width: 75%;
+    height: 45%;
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    top: 10vh;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;    
+`;
+
 const TextWrapper = styled.div`
     width: 100%;
     height: 100%;
@@ -46,6 +58,10 @@ const LinksWrapper = styled.div`
     z-index: 1;
 `;
 
+const MobileLinksWrapper = styled(LinksWrapper)`
+    font-size: ${props => props.theme.fontSize.medium}vh;
+`;
+
 const LinkLogo = styled.img`
     height: 68%;
     border-radius: 55%;
@@ -59,14 +75,46 @@ const TextSpan = styled.div`
     z-index: 1;
 `;
 
+const MobileTextSpan = styled(TextSpan)`
+    font-size: ${props => props.theme.fontSize.mediumSmall}vh;
+`
+
 const Header = styled.div`
     font-size: ${props => props.theme.fontSize.medium}vw;
     font-weight: bold;
     text-align: center;
 `;
 
+const MobileHeader = styled(Header)`
+    font-size: ${props => props.theme.fontSize.large}vh;
+`;
+
+const SourceBtn = styled(Button)`
+    padding: 1vh 2vh;
+`;
+
 
 const Project = (props) => {
+
+    if(props.mobile === true)
+        return(
+            <MobileProjectWrapper>
+                <TextWrapper>
+                    <MobileHeader>
+                        {props.header}
+                    </MobileHeader>
+                    <MobileTextSpan>
+                        {props.text}
+                    </MobileTextSpan>
+                    <MobileLinksWrapper as="a" href={props.href}>
+                        <LinkLogo src={gitLogo} alt={"Git"}/>
+                        <SourceBtn primary>Check the source!</SourceBtn>
+                    </MobileLinksWrapper>
+                    <StyledScatter ScatterSource={scatterPng} height={60} width={55}/>
+                </TextWrapper>
+            </MobileProjectWrapper>
+        )
+
     return (
         <ProjectWrapper>
             <TextWrapper>
@@ -86,4 +134,4 @@ const Project = (props) => {
     )
 };
 
-export default Project
+export default Project;

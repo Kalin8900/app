@@ -6,7 +6,7 @@ import scatterPng from "../misc/images/Scatter_Main.png";
 const Wrapper = styled.div`
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100vw;
     opacity: 0;
     visibility: 0;
     height: 100%;

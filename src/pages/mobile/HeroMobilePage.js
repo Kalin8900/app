@@ -1,14 +1,14 @@
 import React, {useEffect, useRef, useState} from "react";
 import styled, {ThemeProvider} from "styled-components";
-import StyledTriangle from "../components/Triangles";
-import rootTheme from "../themes/root";
-import PageWrapper from "../components/PageWrapper";
-import greyTriangle from "../misc/images/tr_2.png";
-import TextRectangle from "../components/TextRectangle";
-import arrowSrc from "../misc/images/down-arrow.png";
-import Button from "../components/Button";
-import HamburgerMenu from "../components/Hamburger";
-import MenuPage from "../components/MenuPage";
+import StyledTriangle from "../../components/Triangles";
+import rootTheme from "../../themes/root";
+import PageWrapper from "../../components/PageWrapper";
+import greyTriangle from "../../misc/images/tr_2.png";
+import TextRectangle from "../../components/TextRectangle";
+import arrowSrc from "../../misc/images/down-arrow.png";
+import Button from "../../components/Button";
+import HamburgerMenu from "../../components/Hamburger";
+import MenuPage from "../../components/MenuPage";
 import {gsap} from "gsap";
 
 const HeroMobilePageWrapper = styled(PageWrapper)`
@@ -72,10 +72,13 @@ const AbsoluteArrow = styled.img`
 const HeroMobilePage = (props) => {
     const menuPage = useRef(null);
     const hamburger = useRef(null);
+    const heroBtn = useRef(null);
+    const arrowWrapper = useRef(null);
     const [isMenuOpen, setMenu] = useState(false);
+    const [arrowTimeline, setArrowTimeline] = useState(gsap.timeline({defaults: {repeat: -1, duration: .7, yoyo: true}}));
 
     useEffect(() => {
-
+        arrowTimeline.fromTo(arrowWrapper.current.children[1],{y: 0, width: "9vw"},  {y: "+=10", width: 6.5 + "vw"});
     });
 
     const menuAction = () => {
@@ -85,7 +88,8 @@ const HeroMobilePage = (props) => {
         if(!isMenuOpen)
         {
             gsap.set(page.children, {autoAlpha: 0});
-            tl.fromTo(page, {x: -500} ,{x: 0, autoAlpha: 1, duration: 1});
+            arrowTimeline.pause(0);
+            tl.to(page, {x: "+=100vw", autoAlpha: 1, duration: 1});
             tl.to(page.children, {autoAlpha: 1, duration: 1.5});
             tl.to(menu.children[1], {scaleX: 0, duration: 0.5}, "-=1.75");
             tl.to(menu.children[0], {duration: .4, y: "+=1.75vh"}, "-=1");
@@ -100,8 +104,9 @@ const HeroMobilePage = (props) => {
             tl.to(menu.children[1], {scaleX: 1}, "-=4");
             tl.to([menu.children[0], menu.children[2]], {y: 0, duration: .4});
             tl.to(page.children, {autoAlpha: 0, duration: .4});
-            tl.to(menuPage.current.children, {x: -500, duration: 1.5});
+            tl.to(menuPage.current.children, {x: 0, duration: 1.5});
             tl.to(menu.children, {backgroundColor: "#dadce1", duration: 1}, "-=1.6");
+            arrowTimeline.play(0);
         }
         setMenu(prevState => !prevState);
     }
@@ -119,11 +124,11 @@ const HeroMobilePage = (props) => {
                 <TextWrapper id={props.textWrapperId}>
                     <TextRectangle primary>Welcome,</TextRectangle>
                     <StyledText>my name is Michał</StyledText>
-                    <HeroButton primary onClick={menuAction} as="a" id={props.heroBtnId}>
+                    <HeroButton ref={heroBtn} primary onClick={menuAction} as="a" id={props.heroBtnId}>
                         You should know me better
                     </HeroButton>
                 </TextWrapper>
-                <ArrowWrapper>
+                <ArrowWrapper ref={arrowWrapper}>
                     <span>Swipe down!</span>
                     <AbsoluteArrow onClick={() => props.api.moveSectionDown()} src={arrowSrc} className={"heroArrow"}/>
                 </ArrowWrapper>

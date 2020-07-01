@@ -1,7 +1,9 @@
 import React, {useRef, useEffect} from 'react';
 import styled from "styled-components";
 import {HeroPage} from "./pages/HeroPage"
-import HeroMobilePage from "./pages/HeroMobilePage";
+import HeroMobilePage from "./pages/mobile/HeroMobilePage";
+import AboutMeMobilePage from "./pages/mobile/AboutMeMobilePage";
+import MyWorkMobilePage from "./pages/mobile/MyWorkMobilePage";
 import {AboutMePage} from "./pages/AboutMePage";
 import {MyWorkPage} from "./pages/MyWorkPage";
 import {gsap} from 'gsap';
@@ -105,14 +107,17 @@ function App() {
 
     if(window.outerWidth < 768)
         return (
+            <>
             <HeroMobilePage />
-        )
+            <AboutMeMobilePage />
+            <MyWorkMobilePage />
+            </>
+            )
 
     return (
         <div ref={ref}>
             <Fullpage/>
         </div>
-
     );
 }
 
