@@ -6,6 +6,7 @@ import rootTheme from "../../themes/root";
 import blueTriangle from "../../misc/images/tr_3.png";
 import TextRectangle from "../../components/TextRectangle";
 import Button from "../../components/Button";
+import {gsap} from "gsap";
 
 const AboutMobileWrapper = styled(PageWrapper)`
     display: flex;
@@ -64,7 +65,7 @@ const AboutMeMobilePage = (props) => {
 
     return(
         <ThemeProvider theme={rootTheme}>
-            <AboutMobileWrapper>
+            <AboutMobileWrapper id={props.id}>
                 <MobileRotatedTr src={blueTriangle} />
                 <AboutMeWrapper>
                     <TextRectangle secondary>Something about me</TextRectangle>
@@ -92,7 +93,7 @@ const AboutMeMobilePage = (props) => {
                 </SkillsWrapper>
                 <ButtonWrapper>
                     <TextRectangle primary>Are you interested?</TextRectangle>
-                    <HireButton primary onClick={() => props.api.moveSectionDown()}>Take a look what I've done so far!</HireButton>
+                    <HireButton primary onClick={() => gsap.to(window, {scrollTo: {y: "#myWork"}, duration: 1})}>Take a look what I've done so far!</HireButton>
                 </ButtonWrapper>
             </AboutMobileWrapper>
         </ThemeProvider>

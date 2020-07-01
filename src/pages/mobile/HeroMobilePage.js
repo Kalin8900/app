@@ -10,6 +10,9 @@ import Button from "../../components/Button";
 import HamburgerMenu from "../../components/Hamburger";
 import MenuPage from "../../components/MenuPage";
 import {gsap} from "gsap";
+import {ScrollToPlugin} from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const HeroMobilePageWrapper = styled(PageWrapper)`
     flex-flow: column;
@@ -124,13 +127,13 @@ const HeroMobilePage = (props) => {
                 <TextWrapper id={props.textWrapperId}>
                     <TextRectangle primary>Welcome,</TextRectangle>
                     <StyledText>my name is Michał</StyledText>
-                    <HeroButton ref={heroBtn} primary onClick={menuAction} as="a" id={props.heroBtnId}>
+                    <HeroButton ref={heroBtn} primary onClick={() => gsap.to(window, {scrollTo: {y: "#aboutMe"}, duration: 1})} as="a" id={props.heroBtnId}>
                         You should know me better
                     </HeroButton>
                 </TextWrapper>
                 <ArrowWrapper ref={arrowWrapper}>
                     <span>Swipe down!</span>
-                    <AbsoluteArrow onClick={() => props.api.moveSectionDown()} src={arrowSrc} className={"heroArrow"}/>
+                    <AbsoluteArrow onClick={() => gsap.to(window, {scrollTo: {y: "#aboutMe"}, duration: 1})} src={arrowSrc} className={"heroArrow"}/>
                 </ArrowWrapper>
             </HeroMobilePageWrapper>
         </ThemeProvider>

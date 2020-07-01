@@ -108,9 +108,9 @@ function App() {
     if(window.outerWidth < 768)
         return (
             <>
-            <HeroMobilePage />
-            <AboutMeMobilePage />
-            <MyWorkMobilePage />
+            <HeroMobilePage id={"hero"}/>
+            <AboutMeMobilePage id={"aboutMe"}/>
+            <MyWorkMobilePage id={"myWork"}/>
             </>
             )
 
