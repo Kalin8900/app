@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import {Scatter} from "./Scatter";
-import scatterPng from "../misc/images/Scatter_Main.png";
 
 const Wrapper = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -100vw;
     opacity: 0;
@@ -29,29 +27,18 @@ const PageLink = styled.div`
     color: ${props => props.theme.colors.mainBackground};
 `;
 
-const StyledScatter = styled(Scatter)`
-    position: absolute;
-    width: 100%;
-    left: 0;
-    z-index: 0;
-`;
-
 const MenuPage = (props) => {
     return (
         <Wrapper>
-            <PageLink>
+            <PageLink onClick={props.hero}>
                 Welcome
             </PageLink>
-            <PageLink>
+            <PageLink onClick={props.about}>
                 About me
             </PageLink>
-            <PageLink>
+            <PageLink onClick={props.projects}>
                 My projects
             </PageLink>
-            <PageLink>
-                Menu is under development!
-            </PageLink>
-
         </Wrapper>
     )
 };

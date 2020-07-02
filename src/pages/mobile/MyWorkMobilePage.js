@@ -1,9 +1,8 @@
 import React, {useRef, useEffect, useState} from "react";
-import styled, {ThemeProvider} from "styled-components";
+import styled from "styled-components";
 import PageWrapper from "../../components/PageWrapper";
 import blueTriangle from "../../misc/images/tr_3.png";
 import StyledTriangle from "../../components/Triangles";
-import rootTheme from "../../themes/root";
 import Project from "../../components/Project";
 import {ReactComponent as Arrow} from "../../misc/images/arrow.svg";
 import {gsap} from "gsap";
@@ -75,85 +74,80 @@ const MyWorkMobilePage = (props) => {
             const tempArr = [];
             let i;
             for (i = 0; i < ProjectsWrapper.length - 1; ++i)
-                tempArr.push(ProjectsWrapper[i].children[0]);
+                tempArr.push(ProjectsWrapper[i]);
             setProjectsArr(tempArr);
             setRenderCnt(1);
         }
     }, [renderCnt, ref])
 
     useEffect(() => {
-        if (renderCnt !== 0)
-        {
+        if (renderCnt !== 0) {
             setCurrentProject(0);
-            for(let i = 1; i < projectsArr.length; ++i)
-            {
-                console.log(projectsArr[i])
-                gsap.set(projectsArr[i], {autoAlpha: 0});
-            }
+            for (let i = 1; i < projectsArr.length; ++i)
+                gsap.set(projectsArr[i], {autoAlpha: 0, zIndex: 0});
         }
     }, [projectsArr, renderCnt])
 
     const LoadRight = (e) => {
         const arrow = e.target;
         const color = e.target.style.fill;
-        if(currentProject !== projectsArr.length - 1)
-        {
+        if (currentProject !== projectsArr.length - 1) {
             arrow.style.fill = "#49b46d";
             const curProject = projectsArr[currentProject];
             const nextProject = projectsArr[currentProject + 1];
             const tl = gsap.timeline({defaults: {ease: "power2"}});
-            tl.to(curProject, {x: "-=10%", autoAlpha: 0, duration: 1.2});
-            tl.fromTo(nextProject, {translateX: "+=10%", y: 0}, {translateX: 0, y: 0, autoAlpha: 1, duration: 1.2});
+            tl.to(curProject, {x: "-=10%", autoAlpha: 0, duration: 1.2, zIndex: 1});
+            tl.fromTo(nextProject, {translateX: "+=10%", y: 0, zIndex: 2}, {
+                translateX: 0,
+                y: 0,
+                autoAlpha: 1,
+                duration: 1.2
+            });
             setCurrentProject(prevState => prevState + 1);
-        }
-        else
+        } else
             arrow.style.fill = "#d91e1e";
         setTimeout(() => arrow.style.fill = color, 1000);
     }
     const LoadLeft = (e) => {
         const arrow = e.target;
         const color = e.target.style.fill;
-        if(currentProject !== 0)
-        {
+        if (currentProject !== 0) {
             arrow.style.fill = "#49b46d";
             const curProject = projectsArr[currentProject];
             const nextProject = projectsArr[currentProject - 1];
             const tl = gsap.timeline({defaults: {ease: "power2"}});
 
-            tl.to(curProject, {x: "+=10%", autoAlpha: 0, duration: 1.2});
-            tl.fromTo(nextProject, {x: "-=10%", y: 0}, {x: 0, y: 0, autoAlpha: 1, duration: 1.2});
+            tl.to(curProject, {x: "+=10%", autoAlpha: 0, duration: 1.2, zIndex: 1});
+            tl.fromTo(nextProject, {x: "-=10%", y: 0, zIndex: 2}, {x: 0, y: 0, autoAlpha: 1, duration: 1.2});
             setCurrentProject(prevState => prevState - 1);
-        }
-        else
+        } else
             arrow.style.fill = "#d91e1e";
         setTimeout(() => arrow.style.fill = color, 1000);
     }
 
     return (
-        <ThemeProvider theme={rootTheme}>
-            <MyWorkMobileWrapper id={props.id}>
-                <CentringDiv>
-                    <MobileTr as="img" src={blueTriangle} alt="blue"/>
-                    <TextWrapper>Here you can find my projects</TextWrapper>
-                    <ProjectsWrapper ref={ref}>
-                        <Project mobile={true} header={"My first React site"} text={ReactProjectText}
-                                 href={"https://github.com/Kalin8900/reactPort"}/>
-                        <Project mobile={true} header={"EAN-8 generator"} text={EANProjectText}
-                                 href={"https://github.com/Kalin8900/Studies/tree/master/zad_9"}/>
-                        <Project mobile={true} header={"Animations in FLTK!"} text={AnimProjectText}
-                                 href={"https://github.com/Kalin8900/Studies/tree/master/zad_6"}/>
-                        <Project mobile={true} header={"Median filter on BMP"} text={MedianProjectText}
-                                 href={"https://github.com/Kalin8900/Studies/tree/master/zad_8"}/>
-                        <Project mobile={true} header={"Menus in Graph_lib"} text={MenuProjectText}
-                                 href={"https://github.com/Kalin8900/Studies/tree/master/zad_7"}/>
-                        <ArrowWrapper>
-                            <ArrowLeft width={"50%"} height={"50%"} onClick={LoadLeft}/>
-                            <Arrow width={"50%"} height={"50%"} onClick={LoadRight}/>
-                        </ArrowWrapper>
-                    </ProjectsWrapper>
-                </CentringDiv>
-            </MyWorkMobileWrapper>
-        </ThemeProvider>
+        <MyWorkMobileWrapper id={props.id}>
+            <CentringDiv>
+                <MobileTr as="img" src={blueTriangle} alt="blue"/>
+                <TextWrapper>Here you can find my projects</TextWrapper>
+                <ProjectsWrapper ref={ref}>
+                    <Project mobile={true} header={"My first React site"} text={ReactProjectText}
+                             href={"https://github.com/Kalin8900/reactPort"}/>
+                    <Project mobile={true} header={"EAN-8 generator"} text={EANProjectText}
+                             href={"https://github.com/Kalin8900/Studies/tree/master/zad_9"}/>
+                    <Project mobile={true} header={"Animations in FLTK!"} text={AnimProjectText}
+                             href={"https://github.com/Kalin8900/Studies/tree/master/zad_6"}/>
+                    <Project mobile={true} header={"Median filter on BMP"} text={MedianProjectText}
+                             href={"https://github.com/Kalin8900/Studies/tree/master/zad_8"}/>
+                    <Project mobile={true} header={"Menus in Graph_lib"} text={MenuProjectText}
+                             href={"https://github.com/Kalin8900/Studies/tree/master/zad_7"}/>
+                    <ArrowWrapper>
+                        <ArrowLeft width={"50%"} height={"50%"} onClick={LoadLeft}/>
+                        <Arrow width={"50%"} height={"50%"} onClick={LoadRight}/>
+                    </ArrowWrapper>
+                </ProjectsWrapper>
+            </CentringDiv>
+        </MyWorkMobileWrapper>
     )
 }
 

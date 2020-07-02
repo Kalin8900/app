@@ -1,24 +1,9 @@
 import React, {useRef, useEffect} from 'react';
-import styled from "styled-components";
 import {HeroPage} from "./pages/HeroPage"
-import HeroMobilePage from "./pages/mobile/HeroMobilePage";
-import AboutMeMobilePage from "./pages/mobile/AboutMeMobilePage";
-import MyWorkMobilePage from "./pages/mobile/MyWorkMobilePage";
 import {AboutMePage} from "./pages/AboutMePage";
 import {MyWorkPage} from "./pages/MyWorkPage";
 import {gsap} from 'gsap';
 import ReactFullpage from "@fullpage/react-fullpage";
-
-const Mobile = styled.div`
-    text-align: center;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    color: red;
-    height: 100vh;
-    width: 100%;
-`;
 
 const animation = (pageIndex, pageChildrens) => {
     const tl = gsap.timeline({defaults: {ease: 'power2'}});
@@ -83,7 +68,7 @@ const Fullpage = React.forwardRef((props, ref) => (
     />
 ))
 
-function App() {
+const App = () => {
     const ref = useRef(null);
     useEffect(() => {
         if(ref.current !== null)
@@ -105,15 +90,6 @@ function App() {
         }
     })
 
-    if(window.outerWidth < 768)
-        return (
-            <>
-            <HeroMobilePage id={"hero"}/>
-            <AboutMeMobilePage id={"aboutMe"}/>
-            <MyWorkMobilePage id={"myWork"}/>
-            </>
-            )
-
     return (
         <div ref={ref}>
             <Fullpage/>
@@ -121,7 +97,7 @@ function App() {
     );
 }
 
-export {App, Fullpage};
+export default App;
 
 //Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 //<div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
