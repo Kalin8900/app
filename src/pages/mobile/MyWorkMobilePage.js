@@ -132,7 +132,7 @@ const MyWorkMobilePage = (props) => {
                 <TextWrapper>Here you can find my projects</TextWrapper>
                 <ProjectsWrapper ref={ref}>
                     <Project mobile={true} header={"My first React site"} text={ReactProjectText}
-                             href={"https://github.com/Kalin8900/reactPort"}/>
+                             href={"https://github.com/Kalin8900/app/tree/master"}/>
                     <Project mobile={true} header={"EAN-8 generator"} text={EANProjectText}
                              href={"https://github.com/Kalin8900/Studies/tree/master/zad_9"}/>
                     <Project mobile={true} header={"Animations in FLTK!"} text={AnimProjectText}
