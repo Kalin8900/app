@@ -21,21 +21,18 @@ const MobileApp = (props) => {
         const [hamburgerWrapper] = hamburger.current.children;
         const [menu] = hamburgerWrapper.children;
 
-        if(!isMenuOpen)
-        {
+        if(!isMenuOpen) {
             gsap.set(page.children, {autoAlpha: 0});
             tl.to(page, {x: "+=100vw", autoAlpha: 1, duration: 1});
-            tl.to(page.children, {autoAlpha: 1, duration: 1.5});
-            tl.to(menu.children[1], {scaleX: 0, duration: 0.5}, "-=1.75");
-            tl.to(menu.children[0], {duration: .4, y: "+=1.75vh"}, "-=1");
-            tl.to(menu.children[2], {duration: .4, y: "-=1.75vh"}, "-=1");
-            tl.to(menu.children[2], {rotation: -45, duration: .4}, "-=.5");
-            tl.to(menu.children[0], {rotation: 45, duration: .4}, "-=.5");
-        }
-        else
-        {
+            tl.to(page.children, {autoAlpha: 1, duration: 1.75});
+            tl.to(menu.children[1], {scaleX: 0, duration: 0.5}, "-=2.5");
+            tl.to(menu.children[0], {duration: .4, y: "+=1.75vh"}, "-=2.25");
+            tl.to(menu.children[2], {duration: .4, y: "-=1.75vh"}, "-=2.25");
+            tl.to(menu.children[2], {rotation: -45, duration: .4}, "-=1.75");
+            tl.to(menu.children[0], {rotation: 45, duration: .4}, "-=1.75");
+        } else {
             tl.to([menu.children[0], menu.children[2]], {rotation: 0, duration: .4});
-            tl.to(menu.children[1], {scaleX: 1}, "-=4");
+            tl.to(menu.children[1], {scaleX: 1, duration: 0}, "-=4");
             tl.to([menu.children[0], menu.children[2]], {y: 0, duration: .4});
             tl.to(page.children, {autoAlpha: 0, duration: .4});
             tl.to(menuPage.current.children, {x: 0, duration: 1.5});
@@ -46,16 +43,14 @@ const MobileApp = (props) => {
     }
 
     const hideHamburger = () => {
-        if(isHamburgerShown && !isMenuOpen)
-        {
+        if(isHamburgerShown && !isMenuOpen) {
             setHamburger(prevState => !prevState);
             gsap.to(hamburger.current.children, {x: "+=70%", y: "-=70%", duration: 1, ease: "SlowMo"});
         }
     }
 
     const showHamburger = () => {
-        if(!isHamburgerShown)
-        {
+        if(!isHamburgerShown) {
             setHamburger(prevState => !prevState);
             gsap.to(hamburger.current.children, {x: 0, y: 0, duration: 1, ease: "SlowMo"});
         }
@@ -92,7 +87,7 @@ const MobileApp = (props) => {
             <ThemeProvider theme={rootTheme}>
                 <HeroMobilePage id={"hero"}/>
                 <div ref={hamburger} onClick={menuAction}>
-                    <HamburgerMenu />
+                    <HamburgerMenu/>
                 </div>
                 <div ref={menuPage}>
                     <MenuPage about={moveAbout} hero={moveHero} projects={moveProjects}/>

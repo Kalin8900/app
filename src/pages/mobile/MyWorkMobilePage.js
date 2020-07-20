@@ -69,11 +69,11 @@ const MyWorkMobilePage = (props) => {
     const [currentProject, setCurrentProject] = useState(null);
 
     useEffect(() => {
-        if (renderCnt === 0) {
+        if(renderCnt === 0) {
             const ProjectsWrapper = ref.current.children;
             const tempArr = [];
             let i;
-            for (i = 0; i < ProjectsWrapper.length - 1; ++i)
+            for(i = 0; i < ProjectsWrapper.length - 1; ++i)
                 tempArr.push(ProjectsWrapper[i]);
             setProjectsArr(tempArr);
             setRenderCnt(1);
@@ -81,9 +81,9 @@ const MyWorkMobilePage = (props) => {
     }, [renderCnt, ref])
 
     useEffect(() => {
-        if (renderCnt !== 0) {
+        if(renderCnt !== 0) {
             setCurrentProject(0);
-            for (let i = 1; i < projectsArr.length; ++i)
+            for(let i = 1; i < projectsArr.length; ++i)
                 gsap.set(projectsArr[i], {autoAlpha: 0, zIndex: 0});
         }
     }, [projectsArr, renderCnt])
@@ -91,7 +91,7 @@ const MyWorkMobilePage = (props) => {
     const LoadRight = (e) => {
         const arrow = e.target;
         const color = e.target.style.fill;
-        if (currentProject !== projectsArr.length - 1) {
+        if(currentProject !== projectsArr.length - 1) {
             arrow.style.fill = "#49b46d";
             const curProject = projectsArr[currentProject];
             const nextProject = projectsArr[currentProject + 1];
@@ -111,7 +111,7 @@ const MyWorkMobilePage = (props) => {
     const LoadLeft = (e) => {
         const arrow = e.target;
         const color = e.target.style.fill;
-        if (currentProject !== 0) {
+        if(currentProject !== 0) {
             arrow.style.fill = "#49b46d";
             const curProject = projectsArr[currentProject];
             const nextProject = projectsArr[currentProject - 1];

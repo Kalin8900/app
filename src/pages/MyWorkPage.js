@@ -50,11 +50,11 @@ const MyWorkPage = (props) => {
     //const [currentProject, setCurrentProject] = useState(null);
 
     useEffect(() => {
-        if (renderCnt === 0) {
+        if(renderCnt === 0) {
             const ProjectsWrapper = ref.current.children;
             const tempArr = [];
             let i;
-            for (i = 0; i < ProjectsWrapper.length; ++i)
+            for(i = 0; i < ProjectsWrapper.length; ++i)
                 tempArr.push(ProjectsWrapper[i].children[0]);
             setProjectsArr(tempArr);
             setRenderCnt(1);
