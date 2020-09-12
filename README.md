@@ -8,5 +8,6 @@ The entire page has been written only on the basis of React and GSAP documentati
 - React, hooks
 - GSAP3
 - fullpage.js
+- github-pages deployment
 
 ###### total refactor needed :/
